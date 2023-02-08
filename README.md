@@ -2,8 +2,9 @@
 Using Reactjs and Tailwind for this new version of my old weather app that used vanilla JavaScript and no CSS Frameworks,
 for fetching data from the api, I plan on using react-query instead of the fetch API
 
-## LIBRARIES USED
+## LIBRARIES USED:
 ChartJs: chartjs.org
+
 LeafletJS: https://leafletjs.com/
 
 
