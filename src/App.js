@@ -4,10 +4,11 @@ import { MainContents } from './components/main-contents-component/MainContents'
 
 function App() {
   return (
-    <div className="App h-full">
+    <div className="App h-screen flex flex-col">
       <NavBar/>
-      
-      <MainContents/>
+      <MainContents>
+
+        </MainContents>
     </div>
   );
 }
