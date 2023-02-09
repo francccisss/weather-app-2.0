@@ -1,4 +1,5 @@
 import React from "react";
+import "./MainContents.css"
 
 export const MainContents = ({children})=>{
     return (
