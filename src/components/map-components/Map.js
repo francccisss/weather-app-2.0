@@ -1,7 +1,7 @@
 import React from "react";
 
 export const Map = () =>{
-    return(<div>
+    return(<div className="flex-1">
         Map
     </div>)
 }

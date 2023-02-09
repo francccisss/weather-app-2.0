@@ -5,6 +5,7 @@ import { Current } from './components/current-components/Current';
 import { Forecast } from './components/daily-hourly-components/Forecast';
 import { BrowserRouter, Route ,Routes} from 'react-router-dom';
 import { Map } from './components/map-components/Map';
+import { ROUTES } from './components/routes';
 
 function App() {
   return (
@@ -14,10 +15,10 @@ function App() {
       <NavBar/>
       <MainContents>
         <Current/>
-        {/* route forecast and map component */}
         <Routes>
-          <Route path='/' element={<Forecast/>}/>
-          <Route path='/map' element={<Map/>}/>
+          {ROUTES.map(route=>{
+            return <Route key={route.pageName} path={route.path} element={route.element} />
+          })}
         </Routes>
         </MainContents>
     </div>
