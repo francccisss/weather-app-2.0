@@ -1,3 +1,8 @@
 .links > *{
     text-transform: uppercase;
 }
+
+input{
+    appearance: none;
+    outline: none;
+}
