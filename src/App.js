@@ -27,12 +27,14 @@ function App() {
     <div className="App h-screen flex flex-col">
       <NavBar/>
       <MainContents>
+        <div className='flex flex-1 px-20 h-4/5'>
         <Current>
           <CurrentHeading location={placeHolders.location} currentTemp={placeHolders.currentTemp}/>
         </Current>
         <Routes>
           {DISPLAY_ROUTE}
         </Routes>
+        </div>
         </MainContents>
     </div>
     </BrowserRouter>

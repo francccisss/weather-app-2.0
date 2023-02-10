@@ -3,7 +3,7 @@ import React from "react";
 export const Current =({children}) =>{
 
     return(
-        <div className="flex-1" id="current-container">
+        <div className="flex flex-col items-start w-1/3" id="current-container">
             {children}
             <div id="current-description">
                 <p>Today's weather conditions and forecast for Charlotte, NC.</p>
