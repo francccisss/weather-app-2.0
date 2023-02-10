@@ -12,6 +12,7 @@ function App() {
   const placeHolders = {
     location: "Dubai, Uae",
   currentTemp: 30,
+  minMax: [27,32]
   }
 
 
@@ -29,7 +30,7 @@ function App() {
       <MainContents>
         <div className='flex flex-1 px-20 h-4/5'>
         <Current>
-          <CurrentHeading location={placeHolders.location} currentTemp={placeHolders.currentTemp}/>
+          <CurrentHeading location={placeHolders.location} minMax={placeHolders.minMax} currentTemp={placeHolders.currentTemp}/>
         </Current>
         <Routes>
           {DISPLAY_ROUTE}
