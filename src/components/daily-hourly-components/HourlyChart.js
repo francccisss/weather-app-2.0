@@ -21,7 +21,10 @@ export const HourlyChart = ()=>{
               datasets: [
                 {
                   label: 'Hourly Temprature',
-                  data: data.map(row => row.year)
+                  data: data.map(row => row.year),
+                  backgroundColor:"#7cc4bf",
+                  borderColor:"#00000",
+                  borderWidth:2
                 }
               ]
             },
@@ -32,6 +35,7 @@ export const HourlyChart = ()=>{
                 } 
               }
             }
+            
          }
      )
     }
