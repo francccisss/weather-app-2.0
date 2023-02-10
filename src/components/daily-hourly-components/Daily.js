@@ -1,7 +1,8 @@
 import React from "react";
 
-export const Daily = ()=>{
-    return(<div>
-        Daily Forecast
+export const Daily = ({children})=>{
+    return(
+    <div id="daily-container" className="flex flex-grow">
+        {children} 
     </div>)
 }
