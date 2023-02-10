@@ -5,39 +5,36 @@ export const HourlyChart = ()=>{
 
     function createChart(){
         const data = [
-            { year: 2010, count: 10 },
-            { year: 2011, count: 20 },
-            { year: 2012, count: 15 },
-            { year: 2013, count: 25 },
-            { year: 2014, count: 22 },
-            { year: 2015, count: 30 },
-            { year: 2016, count: 28 },
+            { year: 30, hour:  "1:00pm"},
+            { year: 29, hour:  "2:00pm"},
+            { year: 29, hour:  "3:00pm"},
+            { year: 32, hour:  "4:00pm"},
+            { year: 34, hour:  "5:00pm"},
+            { year: 32, hour:  "6:00pm"},
+            { year: 32, hour:  "7:00pm"},
           ];
         const myChart = new Chart(document.getElementById("hourly-chart"),
         {
             type: 'bar',
             data: {
-              labels: data.map(row => row.year),
+              labels: data.map(row => row.hour),
               datasets: [
                 {
                   label: 'Acquisitions by year',
-                  data: data.map(row => row.count)
+                  data: data.map(row => row.year)
                 }
               ]
             }
          }
      )
-     // check if a chart exists since useEffect renders on mount and strict mode makes it render twice
-     if(myChart.id == 0){
-        myChart.destroy();
-     }
+         console.log(myChart)
     }
 
     useEffect(()=>{ 
         createChart()
     },[])
 
-    return(<div className="w-[500px]">
+    return(<div className="w-full">
         <canvas id="hourly-chart"></canvas>
     </div>)
 }
