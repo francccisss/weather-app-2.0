@@ -20,14 +20,20 @@ export const HourlyChart = ()=>{
               labels: data.map(row => row.hour),
               datasets: [
                 {
-                  label: 'Acquisitions by year',
+                  label: 'Hourly Temprature',
                   data: data.map(row => row.year)
                 }
               ]
+            },
+            options:{
+              plugins:{
+                legend:{
+                  display:false
+                } 
+              }
             }
          }
      )
-         console.log(myChart)
     }
 
     useEffect(()=>{ 
