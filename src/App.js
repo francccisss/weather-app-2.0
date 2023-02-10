@@ -5,8 +5,14 @@ import { Current } from './components/current-components/Current';
 import { BrowserRouter, Route ,Routes} from 'react-router-dom';
 import { ROUTES } from './components/routes';
 import { useEffect } from 'react';
+import { CurrentHeading } from './components/current-components/CurrentHeading';
 
 function App() {
+
+  const placeHolders = {
+    location: "Dubai, Uae",
+  currentTemp: 30,
+  }
 
 
   useEffect(()=>{
@@ -21,7 +27,9 @@ function App() {
     <div className="App h-screen flex flex-col">
       <NavBar/>
       <MainContents>
-        <Current/>
+        <Current>
+          <CurrentHeading location={placeHolders.location} currentTemp={placeHolders.currentTemp}/>
+        </Current>
         <Routes>
           {DISPLAY_ROUTE}
         </Routes>
