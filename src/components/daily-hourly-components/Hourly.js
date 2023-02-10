@@ -3,7 +3,7 @@ import { HourlyChart } from "./HourlyChart";
 
 
 export const Hourly = ()=>{
-    return(<div>
+    return(<div id="hourly-container" className="h-full">
     <HourlyChart/>
     </div>)
 }

@@ -6,7 +6,7 @@ import { Hourly } from "./Hourly";
 export const Forecast = ()=>{
     const arr = [1,2,3,4,5,6,7]
 
-    return(<div className="flex bg-white border-2 px-5 py-2  border-black flex-col flex-1">
+    return(<div className="flex bg-white border-2 px-5 py-2 gap-y-5 border-black flex-col flex-1">
        <Hourly/> 
     <Daily>
         {arr.map(element=>{

@@ -29,6 +29,8 @@ export const HourlyChart = ()=>{
               ]
             },
             options:{
+              responsive:true,
+              maintainAspectRatio:false,
               plugins:{
                 legend:{
                   display:false
@@ -44,7 +46,7 @@ export const HourlyChart = ()=>{
         createChart()
     },[])
 
-    return(<div className="w-full">
+    return(<div className="w-full h-[80%] relative">
         <canvas id="hourly-chart"></canvas>
     </div>)
 }
