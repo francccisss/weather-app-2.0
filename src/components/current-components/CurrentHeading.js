@@ -2,7 +2,7 @@ import React from "react";
 
 export const CurrentHeading = ({location,minMax, currentTemp})=>{
 
-    const DISPLAY_MINMAX_TEMP = (<div className="flex gap-x-12">{minMax.map((temp,i)=>{
+    const DISPLAY_MINMAX_TEMP = (<div className="flex gap-x-5 text-xl">{minMax.map((temp,i)=>{
         return <p key={i} className="current-min-max">{temp}°C</p>
     })}
     </div>)
