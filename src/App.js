@@ -16,9 +16,6 @@ function App() {
   }
 
 
-  useEffect(()=>{
-  },[])
-
   const DISPLAY_ROUTE = ROUTES.map(route=>{
           return <Route key={route.pageName} path={route.path} element={route.element} /> 
   })

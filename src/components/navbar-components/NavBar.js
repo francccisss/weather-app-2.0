@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export const NavBar = () =>{
 
     const DISPLAY_LINKS= ROUTES.map((route,i)=>{
-        return <Link key={i} to={route.path}>{route.pageName}</Link>
+        return <li className="links" ><Link key={i} to={route.path}>{route.pageName}</Link></li>
     })
 
    return(
