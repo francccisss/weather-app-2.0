@@ -46,7 +46,7 @@ export const HourlyChart = ()=>{
         createChart()
     },[])
 
-    return(<div className="w-full h-[80%] relative">
+    return(<div className="w-full h-full relative">
         <canvas id="hourly-chart"></canvas>
     </div>)
 }
