@@ -2,8 +2,11 @@ import React from "react";
 import "./NavBar.css"
 import { ROUTES } from "../routes";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 
-export const NavBar = () =>{
+export const NavBar = ({handleQuery}) =>{
+
+    const inputRef = useRef(null);
 
     const DISPLAY_LINKS= ROUTES.map((route,i)=>{
         return <li key={i} className="links" ><Link key={i} to={route.path}>{route.pageName}</Link></li>
@@ -14,8 +17,9 @@ export const NavBar = () =>{
         <h1 id="logo" className="font-bold whitespace-nowrap text-white ">Weather App</h1>
         <form className="w-[500px] mr-20 ml-20" onSubmit={(e)=>{
             e.preventDefault()
+            handleQuery(inputRef.current.value)
         }}>
-           <input className="w-[100%] h-10" type="search"/> 
+           <input ref={inputRef} className="w-[100%] h-10" type="search"/> 
         </form>
         <ul id="nav-link-list" className="text-[] font-semibold text-white flex gap-x-6">
             {DISPLAY_LINKS} 

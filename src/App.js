@@ -5,8 +5,12 @@ import { Current } from './components/current-components/Current';
 import { BrowserRouter, Route ,Routes} from 'react-router-dom';
 import { ROUTES } from './components/routes';
 import { CurrentHeading } from './components/current-components/CurrentHeading';
+import { useQueryClient } from 'react-query';
+import { useState } from 'react';
 
 function App() {
+  
+  const [searchQuery, setSearchQuery] = useState();
 
   const placeHolders = {
     location: "Dubai, Uae",
@@ -22,7 +26,7 @@ function App() {
   return (
     <BrowserRouter>
     <div className="App h-screen flex flex-col">
-      <NavBar/>
+      <NavBar handleQuery={setSearchQuery}/>
       <MainContents>
         <div id="main-container" className='flex flex-1 px-20 h-4/5'>
         <Current>
