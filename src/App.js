@@ -30,8 +30,8 @@ function App() {
 	}
 
 	useEffect(() => {
-		getLocationKey().then((key) => {
-			setCurrentLocation(key);
+		getLocationKey().then((location) => {
+			setCurrentLocation(location);
 		});
 	}, [searchQuery]);
 
