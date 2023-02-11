@@ -4,7 +4,6 @@ import { MainContents } from './components/main-contents-component/MainContents'
 import { Current } from './components/current-components/Current';
 import { BrowserRouter, Route ,Routes} from 'react-router-dom';
 import { ROUTES } from './components/routes';
-import { useEffect } from 'react';
 import { CurrentHeading } from './components/current-components/CurrentHeading';
 
 function App() {
