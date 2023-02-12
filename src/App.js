@@ -5,11 +5,12 @@ import { Current } from "./components/current-components/Current";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ROUTES } from "./components/routes";
 import { CurrentHeading } from "./components/current-components/CurrentHeading";
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 function App() {
 	const [searchQuery, setSearchQuery] = useState("Dubai");
 	const [currentLocation, setCurrentLocation] = useState({});
+	const LocationKeyContext = createContext();
 	const placeHolders = {
 		location: "Dubai, Uae",
 		currentTemp: 30,
@@ -55,14 +56,16 @@ function App() {
 				<NavBar handleQuery={setSearchQuery} />
 				<MainContents>
 					<div id="main-container" className="flex flex-1 px-20 h-4/5">
-						<Current>
-							<CurrentHeading
-								location={placeHolders.location}
-								minMax={placeHolders.minMax}
-								currentTemp={placeHolders.currentTemp}
-							/>
-						</Current>
-						<Routes>{DISPLAY_ROUTE}</Routes>
+						<LocationKeyContext.Provider value={currentLocation}>
+							<Current>
+								<CurrentHeading
+									location={placeHolders.location}
+									minMax={placeHolders.minMax}
+									currentTemp={placeHolders.currentTemp}
+								/>
+							</Current>
+							<Routes>{DISPLAY_ROUTE}</Routes>
+						</LocationKeyContext.Provider>
 					</div>
 				</MainContents>
 			</div>
