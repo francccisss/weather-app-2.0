@@ -7,10 +7,10 @@ import { ROUTES } from "./components/routes";
 import { CurrentHeading } from "./components/current-components/CurrentHeading";
 import { createContext, useContext, useEffect, useState } from "react";
 
+export const LocationKeyContext = createContext();
 function App() {
 	const [searchQuery, setSearchQuery] = useState("Dubai");
 	const [currentLocation, setCurrentLocation] = useState({});
-	const LocationKeyContext = createContext();
 	const placeHolders = {
 		location: "Dubai, Uae",
 		currentTemp: 30,
