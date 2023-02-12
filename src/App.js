@@ -16,9 +16,11 @@ function App() {
 		currentTemp: 30,
 		minMax: [27, 32],
 	};
+	const [isFetchingKey, setIsFetchingKey] = useState(true);
 
 	async function getLocationKey() {
 		try {
+			setIsFetchingKey(true);
 			const fetchLocationKey = await fetch(
 				`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX&q=${searchQuery}`
 			);
@@ -31,13 +33,18 @@ function App() {
 	}
 
 	useEffect(() => {
-		getLocationKey().then((location) => {
-			setCurrentLocation(location);
-		});
+		getLocationKey()
+			.then((location) => {
+				setCurrentLocation(location);
+			})
+			.then(() => {
+				setIsFetchingKey(false);
+			});
 	}, [searchQuery]);
 
 	useEffect(() => {
 		console.log(currentLocation);
+		console.log("has key");
 	}, [currentLocation]);
 
 	const DISPLAY_ROUTE = ROUTES.map((route) => {
@@ -56,7 +63,12 @@ function App() {
 				<NavBar handleQuery={setSearchQuery} />
 				<MainContents>
 					<div id="main-container" className="flex flex-1 px-20 h-4/5">
-						<LocationKeyContext.Provider value={currentLocation}>
+						<LocationKeyContext.Provider
+							value={{
+								isFetching: isFetchingKey,
+								locationObj: currentLocation,
+							}}
+						>
 							<Current>
 								<CurrentHeading
 									location={placeHolders.location}
