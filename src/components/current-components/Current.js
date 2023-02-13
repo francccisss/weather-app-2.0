@@ -14,19 +14,19 @@ export const Current = ({ children }) => {
 	}
 
 	useEffect(() => {
-		console.log(isFetching);
 		if (!isFetching) {
-			fetchCurrentWeather().then((data) => {
-				setCurrentWeather((prev) => data);
-				return data;
-			});
+			console.log("done");
 		}
-	}, [isFetching, locationObj.Key]);
+		// fetchCurrentWeather().then((data) => {
+		// 	setCurrentWeather(data);
+		// 	return data;
+		// });
+	}, [isFetching]);
 
 	const displayData =
 		currentWeather.length !== 0
 			? console.log(currentWeather[0])
-			: console.log(isFetching);
+			: console.log("fetching data");
 
 	return (
 		<div

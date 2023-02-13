@@ -44,7 +44,6 @@ function App() {
 
 	useEffect(() => {
 		console.log(currentLocation);
-		console.log("has key");
 	}, [currentLocation]);
 
 	const DISPLAY_ROUTE = ROUTES.map((route) => {
@@ -67,6 +66,7 @@ function App() {
 							value={{
 								isFetching: isFetchingKey,
 								locationObj: currentLocation,
+								setIsFetching: setIsFetchingKey,
 							}}
 						>
 							<Current>
