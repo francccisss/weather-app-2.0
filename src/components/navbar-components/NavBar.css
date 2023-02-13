@@ -1,0 +1,13 @@
+.links > *{
+    text-transform: uppercase;
+    font-size:clamp(.5rem, 1rem + .5vw,1.785rem );
+}
+
+#logo{
+    font-size: clamp(1.5rem,1vw + 1rem,3.7rem);
+}
+
+input{
+    appearance: none;
+    outline: none;
+}
