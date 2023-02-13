@@ -1,39 +1,50 @@
 import React from "react";
 
-export const CurrentContents = ({ locationObj }) => {
-	const minMax = [30, 32];
-
-	const DISPLAY_MINMAX_TEMP = (
-		<div className="flex gap-x-5 text-xl">
-			{minMax.map((temp, i) => {
-				return (
-					<p key={i} className="current-min-max">
-						{temp}°C
-					</p>
-				);
-			})}
-		</div>
-	);
-
+export const CurrentContents = ({ locationObj, currentWeather }) => {
 	return (
 		<>
 			<div id="current-heading">
 				<p className="text-2xl" id="location">
-					{locationObj.EnglishName},{locationObj.Country.LocalizedName}
+					{locationObj.EnglishName}, {locationObj.Country.LocalizedName}
 				</p>
 				<h1 className="text-9xl" id="current-temp">
-					32°C
+					{Math.floor(currentWeather.Temperature.Metric.Value)}°
+					{currentWeather.Temperature.Metric.Unit}
 				</h1>
-				{DISPLAY_MINMAX_TEMP}
+				<div className="flex gap-x-5 text-xl">
+					<p>
+						{Math.floor(
+							currentWeather.TemperatureSummary["Past6HourRange"].Maximum
+								.Metric.Value
+						)}
+						°C
+					</p>
+					<p>
+						{Math.floor(
+							currentWeather.TemperatureSummary["Past6HourRange"].Minimum
+								.Metric.Value
+						)}
+						°C
+					</p>
+				</div>
 			</div>
 			<div
 				className="flex-1 py-12 font-light flex flex-col justify-between text-3xl"
 				id="current-description"
 			>
-				<p>Today's weather conditions and forecast for Charlotte, NC.</p>
-				<p>Percipitation: 0%</p>
-				<p>Wind: 15mph</p>
-				<p>Humidity: 54%</p>
+				<p>
+					Today's current weather conditions and forecast for{" "}
+					{locationObj.EnglishName}, {locationObj.Country.ID}.
+				</p>
+				<p>
+					Pressure: {currentWeather.Pressure.Metric.Value}
+					{currentWeather.Pressure.Metric.Unit}
+				</p>
+				<p>
+					Wind: {currentWeather.Wind.Speed.Metric.Value}{" "}
+					{currentWeather.Wind.Speed.Metric.Unit}
+				</p>
+				<p>Humidity: {currentWeather.RelativeHumidity}%</p>
 			</div>
 		</>
 	);

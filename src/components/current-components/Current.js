@@ -35,7 +35,7 @@ export const Current = ({ children }) => {
 			className="text-[#2e2e2e] flex flex-col items-start w-1/3"
 			id="current-container"
 		>
-			{!isFetching && (
+			{currentWeather.length !== 0 && (
 				<CurrentContents
 					locationObj={locationObj}
 					currentWeather={currentWeather}
