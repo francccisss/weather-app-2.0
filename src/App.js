@@ -4,7 +4,6 @@ import { MainContents } from "./components/main-contents-component/MainContents"
 import { Current } from "./components/current-components/Current";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ROUTES } from "./components/routes";
-import { CurrentHeading } from "./components/current-components/CurrentHeading";
 import { createContext, useContext, useEffect, useState } from "react";
 
 export const LocationKeyContext = createContext();
@@ -20,6 +19,7 @@ function App() {
 
 	async function getLocationKey() {
 		try {
+			setIsFetchingKey(true);
 			const fetchLocationKey = await fetch(
 				`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX&q=${searchQuery}`
 			);
@@ -68,13 +68,7 @@ function App() {
 								setIsFetching: setIsFetchingKey,
 							}}
 						>
-							<Current>
-								<CurrentHeading
-									location={placeHolders.location}
-									minMax={placeHolders.minMax}
-									currentTemp={placeHolders.currentTemp}
-								/>
-							</Current>
+							<Current />
 							<Routes>{DISPLAY_ROUTE}</Routes>
 						</LocationKeyContext.Provider>
 					</div>
