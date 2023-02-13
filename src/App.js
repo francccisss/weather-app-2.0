@@ -20,7 +20,6 @@ function App() {
 
 	async function getLocationKey() {
 		try {
-			setIsFetchingKey(true);
 			const fetchLocationKey = await fetch(
 				`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX&q=${searchQuery}`
 			);
