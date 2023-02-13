@@ -27,15 +27,20 @@ export const Current = ({ children }) => {
 	}, [isFetching, locationObj.Key]);
 
 	useEffect(() => {
-		console.log(isFetching);
-	}, [isFetching]);
+		console.log(currentWeather);
+	}, [currentWeather]);
 
 	return (
 		<div
 			className="text-[#2e2e2e] flex flex-col items-start w-1/3"
 			id="current-container"
 		>
-			{!isFetching && <CurrentContents locationObj={locationObj} />}
+			{!isFetching && (
+				<CurrentContents
+					locationObj={locationObj}
+					currentWeather={currentWeather}
+				/>
+			)}
 		</div>
 	);
 };
