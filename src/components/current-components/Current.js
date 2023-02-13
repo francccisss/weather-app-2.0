@@ -9,7 +9,7 @@ export const Current = ({ children }) => {
 	async function fetchCurrentWeather() {
 		console.log(locationObj.Key);
 		const getWeather = await fetch(
-			`http://dataservice.accuweather.com/currentconditions/v1/${locationObj.Key}?apikey=IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX&details=false`
+			`http://dataservice.accuweather.com/currentconditions/v1/${locationObj.Key}?apikey=IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX&details=true`
 		);
 		const weatherData = await getWeather.json();
 		return weatherData;
@@ -28,10 +28,13 @@ export const Current = ({ children }) => {
 				});
 		}
 	}, [isFetching, locationObj.Key]);
+
+	useEffect(() => {
+		console.log(currentWeather);
+	}, [isFetching]);
+
 	const displayData =
-		currentWeather.length !== 0
-			? console.log(currentWeather[0])
-			: console.log("fetching data");
+		currentWeather.length !== 0 ? <p>FETCHED</p> : <p>Fetching Data</p>;
 
 	return (
 		<div
@@ -39,6 +42,7 @@ export const Current = ({ children }) => {
 			id="current-container"
 		>
 			{children}
+			{displayData}
 			<div
 				className="flex-1 py-12 font-light flex flex-col justify-between text-3xl"
 				id="current-description"
