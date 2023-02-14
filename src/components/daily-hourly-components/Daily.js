@@ -6,7 +6,7 @@ export const Daily = ({ dailyForecast }) => {
 		return (
 			<DailyCards
 				key={i}
-				date={day.Date}
+				Fdate={day.Date}
 				day={day.Day}
 				temp={day.Temperature}
 			/>
