@@ -10,11 +10,6 @@ export const LocationKeyContext = createContext();
 function App() {
 	const [searchQuery, setSearchQuery] = useState("Dubai");
 	const [currentLocation, setCurrentLocation] = useState({});
-	const placeHolders = {
-		location: "Dubai, Uae",
-		currentTemp: 30,
-		minMax: [27, 32],
-	};
 	const [isFetchingKey, setIsFetchingKey] = useState(true);
 
 	async function getLocationKey() {
