@@ -46,7 +46,7 @@ export const Forecast = () => {
 		<div className="flex bg-white border-2 px-5 py-2 gap-y-5 border-black flex-col w-[70%] ">
 			{!loadingData && (
 				<>
-					<Hourly />
+					<Hourly hourlyForecast={hourlyForecast} />
 					<Daily dailyForecast={dailyForecast} />
 				</>
 			)}

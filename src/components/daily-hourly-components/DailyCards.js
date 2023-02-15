@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./dailyCards.css";
 import format from "date-fns/format";
-import { parseISO } from "date-fns";
 import usePrevious from "../hooks/usePrevious";
+import convertDate from "../mods/DateConvert";
 export const DailyCards = ({ Fdate, day, temp }) => {
 	const [date, setDate] = useState(Fdate);
 	const previousDate = usePrevious(date);
-
-	function convertDate(date, cb) {
-		const parsedDate = parseISO(date);
-		return cb(parsedDate);
-	}
 
 	useEffect(() => {
 		if (previousDate !== date) {
