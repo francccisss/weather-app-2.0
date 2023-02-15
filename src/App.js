@@ -52,10 +52,13 @@ function App() {
 
 	return (
 		<BrowserRouter>
-			<div className="App h-screen flex flex-col">
+			<div className="App h-screen flex flex-col ">
 				<NavBar handleQuery={setSearchQuery} />
 				<MainContents>
-					<div id="main-container" className="flex flex-1 px-20 h-4/5">
+					<div
+						id="main-container"
+						className="gap-x-10 flex flex-1 px-20 h-4/5"
+					>
 						<LocationKeyContext.Provider
 							value={{
 								isFetching: isFetchingKey,
