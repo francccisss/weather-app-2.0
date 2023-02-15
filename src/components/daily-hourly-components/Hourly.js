@@ -6,6 +6,7 @@ import format from "date-fns/format";
 export const Hourly = ({ hourlyForecast }) => {
 	// hourly chart needs DateTime and Temperature Value
 	const [convertedDate, setConvertedDate] = useState([]);
+	const [hourlyTemp, setHourlyTemp] = useState([]);
 
 	function getData(obj) {
 		return hourlyForecast.map((hour) => {
@@ -20,11 +21,17 @@ export const Hourly = ({ hourlyForecast }) => {
 				setConvertedDate((prev) => [...prev, formatDate]);
 			});
 		});
+
+		const storeTemp = getData("Temperature").forEach((temp) => {
+			setHourlyTemp((prev) => [...prev, temp.Value]);
+		});
 	}, [hourlyForecast]);
 
 	return (
 		<div id="hourly-container" className="h-[75%]">
-			<HourlyChart date={convertedDate} getData={getData} />
+			{convertedDate.length !== 0 && (
+				<HourlyChart hours={convertedDate} temps={hourlyTemp} />
+			)}
 		</div>
 	);
 };
