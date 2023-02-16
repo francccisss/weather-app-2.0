@@ -6,10 +6,16 @@ export default async function getUserGeoposition(state) {
 	} else {
 		navigator.geolocation.getCurrentPosition(
 			async (pos) => {
-				await state(onAllow(pos));
+				await state((prev) => {
+					console.log(prev);
+					return (prev = onAllow(pos));
+				});
 			},
 			async () => {
-				await state(onDecline());
+				await state((prev) => {
+					console.log(prev);
+					return (prev = onDecline());
+				});
 			}
 		);
 	}
