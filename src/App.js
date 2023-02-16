@@ -12,9 +12,9 @@ function App() {
 	const [currentLocation, setCurrentLocation] = useState({});
 	const [isFetchingKey, setIsFetchingKey] = useState(true);
 
-	async function getLocationKey() {
+	async function getSearchQuesryLocationKey() {
+		setIsFetchingKey(true);
 		try {
-			setIsFetchingKey(true);
 			const fetchLocationKey = await fetch(
 				`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX&q=${searchQuery}`
 			);
@@ -27,7 +27,7 @@ function App() {
 	}
 
 	useEffect(() => {
-		getLocationKey()
+		getSearchQuesryLocationKey()
 			.then((location) => {
 				setCurrentLocation(location);
 			})

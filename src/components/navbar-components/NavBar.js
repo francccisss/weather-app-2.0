@@ -37,7 +37,7 @@ export const NavBar = ({ handleQuery }) => {
 			>
 				{DISPLAY_LINKS}
 				<li className="links">
-					<button>GITHUB</button>
+					<a href="https://github.com/Sty6x/weather-app-2.0">GITHUB</a>
 				</li>
 			</ul>
 		</nav>
