@@ -5,14 +5,16 @@ import { Current } from "./components/current-components/Current";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ROUTES } from "./components/routes";
 import { createContext, useContext, useEffect, useState } from "react";
+import getUserGeoposition from "./components/mods/GetUserGeoposition";
 
 export const LocationKeyContext = createContext();
 function App() {
 	const [searchQuery, setSearchQuery] = useState("Dubai");
 	const [currentLocation, setCurrentLocation] = useState({});
 	const [isFetchingKey, setIsFetchingKey] = useState(true);
+	const [loc, setloc] = useState();
 
-	async function getSearchQuesryLocationKey() {
+	async function getSearchQueryLocationKey() {
 		setIsFetchingKey(true);
 		try {
 			const fetchLocationKey = await fetch(
@@ -26,19 +28,21 @@ function App() {
 		}
 	}
 
-	useEffect(() => {
-		getSearchQuesryLocationKey()
-			.then((location) => {
-				setCurrentLocation(location);
-			})
-			.then(() => {
-				setIsFetchingKey(false);
-			});
-	}, [searchQuery]);
+	// useEffect(() => {
+	// 	getSearchQueryLocationKey()
+	// 		.then((location) => {
+	// 			setCurrentLocation(location);
+	// 		})
+	// 		.then(() => {
+	// 			setIsFetchingKey(false);
+	// 		});
+	// }, [searchQuery]);
 
 	useEffect(() => {
-		console.log(currentLocation);
-	}, [currentLocation]);
+		getUserGeoposition(setCurrentLocation).then((_) => {
+			console.log(currentLocation);
+		});
+	}, []);
 
 	const DISPLAY_ROUTE = ROUTES.map((route) => {
 		return (

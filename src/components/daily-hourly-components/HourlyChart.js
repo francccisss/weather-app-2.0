@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import Chart from "chart.js/auto";
 
 export const HourlyChart = ({ hours, temps }) => {
-	console.log(hours);
 	function createChart() {
 		const myChart = new Chart(document.getElementById("hourly-chart"), {
 			type: "bar",
