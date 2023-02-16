@@ -12,9 +12,9 @@ function App() {
 	const [currentLocation, setCurrentLocation] = useState({});
 	const [isFetchingKey, setIsFetchingKey] = useState(true);
 
-	async function getLocationKey() {
+	async function getSearchQuesryLocationKey() {
+		setIsFetchingKey(true);
 		try {
-			setIsFetchingKey(true);
 			const fetchLocationKey = await fetch(
 				`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX&q=${searchQuery}`
 			);
@@ -27,7 +27,7 @@ function App() {
 	}
 
 	useEffect(() => {
-		getLocationKey()
+		getSearchQuesryLocationKey()
 			.then((location) => {
 				setCurrentLocation(location);
 			})
@@ -52,10 +52,13 @@ function App() {
 
 	return (
 		<BrowserRouter>
-			<div className="App h-screen flex flex-col">
+			<div className="App h-screen flex flex-col ">
 				<NavBar handleQuery={setSearchQuery} />
 				<MainContents>
-					<div id="main-container" className="flex flex-1 px-20 h-4/5">
+					<div
+						id="main-container"
+						className="gap-x-10 flex flex-1 px-20 h-4/5"
+					>
 						<LocationKeyContext.Provider
 							value={{
 								isFetching: isFetchingKey,

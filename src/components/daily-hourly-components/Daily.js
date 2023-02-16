@@ -1,9 +1,20 @@
 import React from "react";
+import { DailyCards } from "./DailyCards";
 
-export const Daily = ({ children }) => {
+export const Daily = ({ dailyForecast }) => {
+	const DISPLAY_DAILY_WEATHER = dailyForecast.DailyForecasts.map((day, i) => {
+		return (
+			<DailyCards
+				key={i}
+				Fdate={day.Date}
+				day={day.Day}
+				temp={day.Temperature}
+			/>
+		);
+	});
 	return (
 		<div id="daily-container" className="flex h-full gap-x-2 flex-1">
-			{children}
+			{DISPLAY_DAILY_WEATHER}
 		</div>
 	);
 };

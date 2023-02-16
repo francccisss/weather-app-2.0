@@ -8,20 +8,20 @@ export const CurrentContents = ({ locationObj, currentWeather }) => {
 					{locationObj.EnglishName}, {locationObj.Country.LocalizedName}
 				</p>
 				<h1 className="text-9xl" id="current-temp">
-					{Math.floor(currentWeather.Temperature.Metric.Value)}°
-					{currentWeather.Temperature.Metric.Unit}
+					{Math.floor(currentWeather.Temperature.Metric.Value)}°C
 				</h1>
-				<div className="flex gap-x-5 text-xl">
+				<div className="flex gap-x-2 text-xl">
 					<p>
 						{Math.floor(
-							currentWeather.TemperatureSummary["Past6HourRange"].Maximum
+							currentWeather.TemperatureSummary["Past6HourRange"].Minimum
 								.Metric.Value
 						)}
 						°C
 					</p>
+					{""}|{""}
 					<p>
 						{Math.floor(
-							currentWeather.TemperatureSummary["Past6HourRange"].Minimum
+							currentWeather.TemperatureSummary["Past6HourRange"].Maximum
 								.Metric.Value
 						)}
 						°C
