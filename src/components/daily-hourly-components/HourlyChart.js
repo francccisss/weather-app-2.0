@@ -6,7 +6,11 @@ export const HourlyChart = ({ hours, temps }) => {
 		const myChart = new Chart(document.getElementById("hourly-chart"), {
 			type: "bar",
 			data: {
-				labels: hours,
+				labels: hours.filter((hour, i) => {
+					if (i < 6) {
+						return hour;
+					}
+				}),
 				datasets: [
 					{
 						label: "Hourly Temprature",
