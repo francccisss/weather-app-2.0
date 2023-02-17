@@ -11,7 +11,8 @@ function App() {
 	const [searchQuery, setSearchQuery] = useState("Dubai");
 	const [currentLocation, setCurrentLocation] = useState({});
 	const [isFetchingKey, setIsFetchingKey] = useState(true);
-	const apikey = "IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX";
+	const apikey = "%09IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX";
+	const [isRetrievingPos, setIsRetrievingPos] = useState(true);
 	const [geoposition, setGeoPosition] = useState({});
 
 	async function getSearchQueryLocationKey() {
@@ -46,6 +47,7 @@ function App() {
 			lat: coordinates.latitude,
 			long: coordinates.longitude,
 		};
+		console.log(position);
 		setGeoPosition(position);
 	}
 
@@ -54,28 +56,24 @@ function App() {
 		setGeoPosition(defaultPosition);
 	}
 
-	async function fetchGeopositionKey() {
+	async function fetchGeopositionKey(geo) {
 		const fetchGeo = await fetch(
-			`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apikey}&q=${geoposition.lat},${geoposition.long}`
+			`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?q=${geo.lat},${geo.long}&apikey=${apikey}`
 		);
 		const fetchedData = await fetchGeo.json();
-		return fetchedData[0];
+		console.log(fetchedData);
+		setCurrentLocation(fetchedData);
+		return fetchedData;
 	}
-
-	// useEffect(() => {
-	// 	getSearchQueryLocationKey()
-	// 		.then((location) => {
-	// 			setCurrentLocation(location);
-	// 		})
-	// 		.then(() => {
-	// 			setIsFetchingKey(false);
-	// 		});
-	// }, [searchQuery]);
 
 	useEffect(() => {
 		getUserGeoposition()
 			.then(() => {
 				console.log("fetching");
+			})
+			.then(() => {
+				console.log("done");
+				setIsRetrievingPos(false);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -83,14 +81,12 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		console.log(geoposition);
-		fetchGeopositionKey()
-			.then((data) => {
-				setCurrentLocation(data);
-			})
-			.then((_) => {
+		if (!isRetrievingPos) {
+			console.log(geoposition);
+			fetchGeopositionKey(geoposition).then(() => {
 				setIsFetchingKey(false);
 			});
+		}
 	}, [geoposition]);
 
 	const DISPLAY_ROUTE = ROUTES.map((route) => {
@@ -119,8 +115,8 @@ function App() {
 								setIsFetching: setIsFetchingKey,
 							}}
 						>
-							{/* <Current />
-							<Routes>{DISPLAY_ROUTE}</Routes> */}
+							<Current />
+							<Routes>{DISPLAY_ROUTE}</Routes>
 						</LocationKeyContext.Provider>
 					</div>
 				</MainContents>
