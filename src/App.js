@@ -5,6 +5,7 @@ import { Current } from "./components/current-components/Current";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ROUTES } from "./components/routes";
 import { createContext, useContext, useEffect, useState } from "react";
+import usePrevious from "./components/hooks/usePrevious";
 
 export const LocationKeyContext = createContext();
 function App() {
@@ -14,6 +15,7 @@ function App() {
 	const apikey = "%09IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX";
 	const [isRetrievingPos, setIsRetrievingPos] = useState(true);
 	const [geoposition, setGeoPosition] = useState({});
+	const previousSearchQueryState = usePrevious(searchQuery);
 
 	async function getSearchQueryLocationKey() {
 		setIsFetchingKey(true);
@@ -91,17 +93,17 @@ function App() {
 		}
 	}, [geoposition]);
 
-	// useEffect(() => {
-	// 	if (searchQuery !== "") {
-	// 		getSearchQueryLocationKey()
-	// 			.then((data) => {
-	// 				setCurrentLocation(data);
-	// 			})
-	// 			.then(() => {
-	// 				setIsFetchingKey(false);
-	// 			});
-	// 	}
-	// }, [searchQuery]);
+	useEffect(() => {
+		if (searchQuery !== previousSearchQueryState) {
+			getSearchQueryLocationKey()
+				.then((data) => {
+					setCurrentLocation(data);
+				})
+				.then(() => {
+					setIsFetchingKey(false);
+				});
+		}
+	}, [searchQuery]);
 
 	const DISPLAY_ROUTE = ROUTES.map((route) => {
 		return (
@@ -129,12 +131,8 @@ function App() {
 								setIsFetching: setIsFetchingKey,
 							}}
 						>
-							{!isFetchingKey && (
-								<>
-									<Current />
-									<Routes>{DISPLAY_ROUTE}</Routes>
-								</>
-							)}
+							<Current />
+							<Routes>{DISPLAY_ROUTE}</Routes>
 						</LocationKeyContext.Provider>
 					</div>
 				</MainContents>
