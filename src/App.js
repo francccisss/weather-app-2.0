@@ -83,7 +83,7 @@ function App() {
 	}, []);
 
 	// do this after retreiving the lat and long of user or default location
-
+	// fetches KEY using geoposition
 	useEffect(() => {
 		if (!isRetrievingPos) {
 			console.log(geoposition);
@@ -93,6 +93,7 @@ function App() {
 		}
 	}, [geoposition]);
 
+	// fetches KEY using textSearch
 	useEffect(() => {
 		if (searchQuery !== previousSearchQueryState) {
 			getSearchQueryLocationKey()
