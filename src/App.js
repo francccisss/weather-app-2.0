@@ -14,7 +14,7 @@ function App() {
 	const [isFetchingKey, setIsFetchingKey] = useState(true);
 	const apikey = "%09IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX";
 	const [isRetrievingPos, setIsRetrievingPos] = useState(true);
-	const [geoposition, setGeoPosition] = useState({});
+	const [geoposition, setGeoPosition] = useState(null);
 	const previousSearchQueryState = usePrevious(searchQuery);
 
 	async function getSearchQueryLocationKey() {
@@ -130,6 +130,8 @@ function App() {
 								isFetching: isFetchingKey,
 								locationObj: currentLocation,
 								setIsFetching: setIsFetchingKey,
+								setGeoPosition: setGeoPosition,
+								geoposition: geoposition,
 							}}
 						>
 							<Current />

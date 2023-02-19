@@ -1,6 +1,14 @@
 import React from "react";
-import { MapContainer, TileLayer, useMap, Popup, Marker } from "react-leaflet";
+import {
+	MapContainer,
+	TileLayer,
+	useMap,
+	Popup,
+	Marker,
+	useMapEvent,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { LocationMarker } from "./LocationMarker";
 
 export const Map = () => {
 	return (
@@ -15,11 +23,7 @@ export const Map = () => {
 					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
-				<Marker position={[51.505, -0.09]}>
-					<Popup>
-						A pretty CSS3 popup. <br /> Easily customizable.
-					</Popup>
-				</Marker>
+				<LocationMarker />
 			</MapContainer>
 		</div>
 	);
