@@ -9,7 +9,7 @@ export const Hourly = ({ hourlyForecast }) => {
 	const [hourlyTemp, setHourlyTemp] = useState([]);
 
 	function getData(obj) {
-		return hourlyForecast.map((hour) => {
+		return hourlyForecast.map((hour, i) => {
 			return hour[obj];
 		});
 	}

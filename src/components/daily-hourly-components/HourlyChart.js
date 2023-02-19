@@ -2,16 +2,23 @@ import React, { useEffect } from "react";
 import Chart from "chart.js/auto";
 
 export const HourlyChart = ({ hours, temps }) => {
-	console.log(hours);
 	function createChart() {
 		const myChart = new Chart(document.getElementById("hourly-chart"), {
 			type: "bar",
 			data: {
-				labels: hours,
+				labels: hours.filter((hour, i) => {
+					if (i < 6) {
+						return hour;
+					}
+				}),
 				datasets: [
 					{
 						label: "Hourly Temprature",
-						data: temps,
+						data: temps.filter((temp, i) => {
+							if (i < 6) {
+								return `${Math.floor(temp)}°C`;
+							}
+						}),
 						backgroundColor: "#7cc4bf",
 						borderColor: "#00000",
 						borderWidth: 2,
