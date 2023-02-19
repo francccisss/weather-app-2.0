@@ -14,7 +14,11 @@ export const HourlyChart = ({ hours, temps }) => {
 				datasets: [
 					{
 						label: "Hourly Temprature",
-						data: temps,
+						data: temps.filter((temp, i) => {
+							if (i < 6) {
+								return `${Math.floor(temp)}°C`;
+							}
+						}),
 						backgroundColor: "#7cc4bf",
 						borderColor: "#00000",
 						borderWidth: 2,

@@ -8,7 +8,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 export const LocationKeyContext = createContext();
 function App() {
-	const [searchQuery, setSearchQuery] = useState("Dubai");
+	const [searchQuery, setSearchQuery] = useState();
 	const [currentLocation, setCurrentLocation] = useState({});
 	const [isFetchingKey, setIsFetchingKey] = useState(true);
 	const apikey = "%09IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX";
@@ -80,6 +80,8 @@ function App() {
 			});
 	}, []);
 
+	// do this after retreiving the lat and long of user or default location
+
 	useEffect(() => {
 		if (!isRetrievingPos) {
 			console.log(geoposition);
@@ -88,6 +90,18 @@ function App() {
 			});
 		}
 	}, [geoposition]);
+
+	// useEffect(() => {
+	// 	if (searchQuery !== "") {
+	// 		getSearchQueryLocationKey()
+	// 			.then((data) => {
+	// 				setCurrentLocation(data);
+	// 			})
+	// 			.then(() => {
+	// 				setIsFetchingKey(false);
+	// 			});
+	// 	}
+	// }, [searchQuery]);
 
 	const DISPLAY_ROUTE = ROUTES.map((route) => {
 		return (
@@ -115,8 +129,12 @@ function App() {
 								setIsFetching: setIsFetchingKey,
 							}}
 						>
-							<Current />
-							<Routes>{DISPLAY_ROUTE}</Routes>
+							{!isFetchingKey && (
+								<>
+									<Current />
+									<Routes>{DISPLAY_ROUTE}</Routes>
+								</>
+							)}
 						</LocationKeyContext.Provider>
 					</div>
 				</MainContents>
