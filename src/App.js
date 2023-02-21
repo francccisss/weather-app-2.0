@@ -16,6 +16,7 @@ function App() {
 	const [isRetrievingPos, setIsRetrievingPos] = useState(true);
 	const [geoposition, setGeoPosition] = useState(null);
 	const previousSearchQueryState = usePrevious(searchQuery);
+	const [isNull, setIsNull] = useState(false);
 
 	async function getSearchQueryLocationKey() {
 		setIsFetchingKey(true);
@@ -59,18 +60,25 @@ function App() {
 	}
 
 	async function fetchGeopositionKey(geo) {
-		const fetchGeo = await fetch(
-			`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?q=${geo.lat},${geo.long}&apikey=${apikey}`
-		);
-		const fetchedData = await fetchGeo.json();
-		console.log(fetchedData);
-		setCurrentLocation(fetchedData);
-		return fetchedData;
+		try {
+			const fetchGeo = await fetch(
+				`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?q=${geo.lat},${geo.long}&apikey=${apikey}`
+			);
+			const fetchedData = await fetchGeo.json();
+			if (fetchedData == null) {
+				return;
+			}
+			setCurrentLocation(fetchedData);
+			return fetchedData;
+		} catch (e) {
+			console.error(e);
+			console.log("Unable to fetch location key");
+		}
 	}
 
 	useEffect(() => {
 		getUserGeoposition()
-			.then(() => {
+			.then((data) => {
 				console.log("fetching");
 			})
 			.then(() => {
