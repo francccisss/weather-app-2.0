@@ -12,4 +12,5 @@ LeafletJS: https://leafletjs.com/
 Accuweather API doc: https://developer.accuweather.com/apis
 
 Old Version: github.com/Sty6x/weather-app
+
 Visit the Old Version here: https://sty6x.github.io/weather-app/
