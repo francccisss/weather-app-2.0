@@ -4,6 +4,7 @@ import { useMapEvents, Popup } from "react-leaflet";
 import { useState } from "react";
 import { useContext } from "react";
 import { LocationKeyContext } from "../../App";
+import L from "leaflet";
 
 export const LocationMarker = () => {
 	const [position, setPosition] = useState(null);
@@ -19,9 +20,13 @@ export const LocationMarker = () => {
 			setGeoPosition(geo);
 		},
 	});
+	const mark = L.icon({
+		iconUrl: require("../../assets/img/marker/marker3.png"),
+		iconSize: [50, 60],
+	});
 
 	return position === null ? null : (
-		<Marker draggable={true} position={position}>
+		<Marker icon={mark} position={position}>
 			<Popup>You are here</Popup>
 		</Marker>
 	);
