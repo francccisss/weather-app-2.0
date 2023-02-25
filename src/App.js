@@ -74,6 +74,7 @@ function App() {
 			setCurrentLocation(fetchedData);
 			return fetchedData;
 		} catch (e) {
+			setIsError(true);
 			console.log("cors error");
 			console.error(e);
 			console.log("Unable to fetch location key");
