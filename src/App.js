@@ -6,17 +6,18 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ROUTES } from "./components/routes";
 import { createContext, useContext, useEffect, useState } from "react";
 import usePrevious from "./components/hooks/usePrevious";
+import { ErrorComponent } from "./ErrorComponent";
 
 export const LocationKeyContext = createContext();
 function App() {
-	const [searchQuery, setSearchQuery] = useState("zxczxczx");
+	const [searchQuery, setSearchQuery] = useState();
 	const [currentLocation, setCurrentLocation] = useState({});
 	const [isFetchingKey, setIsFetchingKey] = useState(true);
 	const apikey = "%09IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX";
 	const [isRetrievingPos, setIsRetrievingPos] = useState(true);
 	const [geoposition, setGeoPosition] = useState(null);
 	const previousSearchQueryState = usePrevious(searchQuery);
-	const [searchQueryErr, setSearchQueryErr] = useState();
+	const [isError, setIsError] = useState(false);
 
 	async function getSearchQueryLocationKey() {
 		setIsFetchingKey(true);
@@ -30,8 +31,7 @@ function App() {
 			return locationKey[0];
 			// return locationKey[0];
 		} catch (error) {
-			console.log("error");
-			throw error;
+			console.log("cors error");
 		}
 	}
 
@@ -74,24 +74,25 @@ function App() {
 			setCurrentLocation(fetchedData);
 			return fetchedData;
 		} catch (e) {
+			console.log("cors error");
 			console.error(e);
 			console.log("Unable to fetch location key");
 		}
 	}
 
-	// useEffect(() => {
-	// 	getUserGeoposition()
-	// 		.then((data) => {
-	// 			console.log("fetching");
-	// 		})
-	// 		.then(() => {
-	// 			console.log("done");
-	// 			setIsRetrievingPos(false);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// }, []);
+	useEffect(() => {
+		getUserGeoposition()
+			.then((data) => {
+				console.log("fetching");
+			})
+			.then(() => {
+				console.log("done");
+				setIsRetrievingPos(false);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
 
 	// do this after retreiving the lat and long of user or default location
 	// fetches KEY using geoposition
@@ -136,29 +137,8 @@ function App() {
 						id="main-container"
 						className="gap-x-10 flex flex-1 px-20 h-4/5"
 					>
-						{currentLocation === undefined ? (
-							<div className="text-[5rem] flex justify-center flex-col items-center flex-1">
-								<div>
-									<div className="text-[10rem]"> :'( </div>
-									<h1 className="">Location not found</h1>
-									<h2 className="text-xl font-bold">Could be:</h2>
-									<p className="text-xl">
-										•The location you've entered cannot be found,
-										please enter a different location.{" "}
-									</p>
-									<p className="text-xl">
-										•We've exceeded the amount of calls (50 a day for
-										free tier) from{" "}
-										<a
-											id="accuweather-link"
-											href="https://developer.accuweather.com/apis"
-										>
-											AccuWeather
-										</a>
-										.
-									</p>
-								</div>
-							</div>
+						{currentLocation === undefined || isError ? (
+							<ErrorComponent />
 						) : (
 							<LocationKeyContext.Provider
 								value={{
@@ -167,6 +147,8 @@ function App() {
 									setIsFetching: setIsFetchingKey,
 									setGeoPosition: setGeoPosition,
 									geoposition: geoposition,
+									isError: isError,
+									setIsError: setIsError,
 								}}
 							>
 								<Current />

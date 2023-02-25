@@ -21,8 +21,8 @@ export const LocationMarker = () => {
 		},
 	});
 	const mark = L.icon({
-		iconUrl: require("../../assets/img/marker/marker3.png"),
-		iconSize: [50, 60],
+		iconUrl: require("../../assets/img/marker/marker2.png"),
+		iconSize: [35, 50],
 	});
 
 	return position === null ? null : (

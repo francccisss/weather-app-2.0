@@ -5,7 +5,8 @@ import { Hourly } from "./Hourly";
 import { LocationKeyContext } from "../../App";
 
 export const Forecast = () => {
-	const { locationObj, isFetching } = useContext(LocationKeyContext);
+	const { locationObj, isFetching, setIsError } =
+		useContext(LocationKeyContext);
 	const [loadingData, setLoadingData] = useState(true);
 	const forecastURL = [
 		`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationObj.Key}?metric=true&apikey=IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX `,
@@ -33,7 +34,10 @@ export const Forecast = () => {
 					setDailyForecast(data[0]);
 					setHourlyForecast(data[1]);
 				})
-				.then(() => setLoadingData(false));
+				.then(() => setLoadingData(false))
+				.catch((e) => {
+					setIsError(true);
+				});
 		}
 	}, [isFetching]);
 

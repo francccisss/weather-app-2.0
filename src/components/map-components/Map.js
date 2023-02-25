@@ -12,7 +12,7 @@ import { LocationMarker } from "./LocationMarker";
 
 export const Map = () => {
 	return (
-		<div className="flex-1 " id="map">
+		<div className="flex-1 border-2 border-black " id="map">
 			<MapContainer
 				center={[51.505, -0.09]}
 				zoom={13}

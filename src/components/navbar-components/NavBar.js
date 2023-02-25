@@ -19,9 +19,13 @@ export const NavBar = ({ handleQuery }) => {
 
 	return (
 		<nav className="h-24 bg-[#2e2e2e] uppercase flex justify-between items-center px-10">
-			<h1 id="logo" className="font-bold whitespace-nowrap text-white ">
+			<a
+				href="#"
+				id="logo"
+				className="font-bold whitespace-nowrap text-white "
+			>
 				Weather App
-			</h1>
+			</a>
 			<form
 				className="w-[500px] mr-20 ml-20"
 				onSubmit={(e) => {

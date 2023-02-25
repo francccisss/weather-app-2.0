@@ -3,7 +3,7 @@ import { LocationKeyContext } from "../../App";
 import { CurrentContents } from "./CurrentContents";
 
 export const Current = ({ children }) => {
-	const { locationObj, setIsFetching, isFetching } =
+	const { locationObj, setIsFetching, isFetching, setIsError } =
 		useContext(LocationKeyContext);
 	const [currentWeather, setCurrentWeather] = useState([]);
 
@@ -29,6 +29,7 @@ export const Current = ({ children }) => {
 					return data;
 				})
 				.catch((err) => {
+					setIsError(true);
 					console.log("Unable to fetch data");
 				});
 		}
