@@ -9,7 +9,7 @@ import usePrevious from "./components/hooks/usePrevious";
 
 export const LocationKeyContext = createContext();
 function App() {
-	const [searchQuery, setSearchQuery] = useState();
+	const [searchQuery, setSearchQuery] = useState("zxczxczx");
 	const [currentLocation, setCurrentLocation] = useState({});
 	const [isFetchingKey, setIsFetchingKey] = useState(true);
 	const apikey = "%09IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX";
@@ -137,7 +137,28 @@ function App() {
 						className="gap-x-10 flex flex-1 px-20 h-4/5"
 					>
 						{currentLocation === undefined ? (
-							<h1>Location not found</h1>
+							<div className="text-[5rem] flex justify-center flex-col items-center flex-1">
+								<div>
+									<div className="text-[10rem]"> :'( </div>
+									<h1 className="">Location not found</h1>
+									<h2 className="text-xl font-bold">Could be:</h2>
+									<p className="text-xl">
+										•The location you've entered cannot be found,
+										please enter a different location.{" "}
+									</p>
+									<p className="text-xl">
+										•We've exceeded the amount of calls (50 a day for
+										free tier) from{" "}
+										<a
+											id="accuweather-link"
+											href="https://developer.accuweather.com/apis"
+										>
+											AccuWeather
+										</a>
+										.
+									</p>
+								</div>
+							</div>
 						) : (
 							<LocationKeyContext.Provider
 								value={{

@@ -54,3 +54,11 @@
   body{
     font-family: "Poppins";
   }
+
+#accuweather-link{
+position: relative;
+text-decoration: underline;
+cursor: pointer;
+color:#c4857d ;
+}
+
