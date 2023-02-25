@@ -16,7 +16,7 @@ function App() {
 	const [isRetrievingPos, setIsRetrievingPos] = useState(true);
 	const [geoposition, setGeoPosition] = useState(null);
 	const previousSearchQueryState = usePrevious(searchQuery);
-	const [isNull, setIsNull] = useState(false);
+	const [searchQueryErr, setSearchQueryErr] = useState();
 
 	async function getSearchQueryLocationKey() {
 		setIsFetchingKey(true);
@@ -24,10 +24,13 @@ function App() {
 			const fetchLocationKey = await fetch(
 				`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=%09IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX&q=${searchQuery}`
 			);
+			console.log(fetchLocationKey);
 			const locationKey = await fetchLocationKey.json();
-			// since accuweather's search api returns an array of city by rank we'll be retreiving only the first element
+			console.log(locationKey[0]);
 			return locationKey[0];
+			// return locationKey[0];
 		} catch (error) {
+			console.log("error");
 			throw error;
 		}
 	}
@@ -76,19 +79,19 @@ function App() {
 		}
 	}
 
-	useEffect(() => {
-		getUserGeoposition()
-			.then((data) => {
-				console.log("fetching");
-			})
-			.then(() => {
-				console.log("done");
-				setIsRetrievingPos(false);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}, []);
+	// useEffect(() => {
+	// 	getUserGeoposition()
+	// 		.then((data) => {
+	// 			console.log("fetching");
+	// 		})
+	// 		.then(() => {
+	// 			console.log("done");
+	// 			setIsRetrievingPos(false);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// }, []);
 
 	// do this after retreiving the lat and long of user or default location
 	// fetches KEY using geoposition
@@ -133,18 +136,22 @@ function App() {
 						id="main-container"
 						className="gap-x-10 flex flex-1 px-20 h-4/5"
 					>
-						<LocationKeyContext.Provider
-							value={{
-								isFetching: isFetchingKey,
-								locationObj: currentLocation,
-								setIsFetching: setIsFetchingKey,
-								setGeoPosition: setGeoPosition,
-								geoposition: geoposition,
-							}}
-						>
-							<Current />
-							<Routes>{DISPLAY_ROUTE}</Routes>
-						</LocationKeyContext.Provider>
+						{currentLocation === undefined ? (
+							<h1>Location not found</h1>
+						) : (
+							<LocationKeyContext.Provider
+								value={{
+									isFetching: isFetchingKey,
+									locationObj: currentLocation,
+									setIsFetching: setIsFetchingKey,
+									setGeoPosition: setGeoPosition,
+									geoposition: geoposition,
+								}}
+							>
+								<Current />
+								<Routes>{DISPLAY_ROUTE}</Routes>
+							</LocationKeyContext.Provider>
+						)}
 					</div>
 				</MainContents>
 			</div>
