@@ -40,12 +40,6 @@ export const Forecast = () => {
 				});
 		}
 	}, [isFetching]);
-
-	useEffect(() => {
-		console.log(dailyForecast);
-		console.log(hourlyForecast);
-	}, [dailyForecast, hourlyForecast]);
-
 	return (
 		<div className="flex bg-white border-2 px-5 py-2 gap-y-5 border-black flex-col w-[70%] ">
 			{!loadingData && (

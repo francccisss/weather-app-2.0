@@ -35,10 +35,6 @@ export const Current = ({ children }) => {
 		}
 	}, [isFetching, locationObj.Key]);
 
-	useEffect(() => {
-		console.log(currentWeather);
-	}, [currentWeather]);
-
 	return (
 		<div
 			className="text-[#2e2e2e] flex flex-col items-start w-1/3"
