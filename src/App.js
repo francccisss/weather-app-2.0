@@ -65,7 +65,7 @@ function App() {
 	async function fetchGeopositionKey(geo) {
 		try {
 			const fetchGeo = await fetch(
-				`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?q=${geo.lat},${geo.long}&apikey=${apikey}`
+				`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?q=${geo.lat},${geo.long}&apikey=${apikey}`
 			);
 			const fetchedData = await fetchGeo.json();
 			if (fetchedData == null) {
