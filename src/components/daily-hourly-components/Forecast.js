@@ -9,8 +9,8 @@ export const Forecast = () => {
 		useContext(LocationKeyContext);
 	const [loadingData, setLoadingData] = useState(true);
 	const forecastURL = [
-		`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationObj.Key}?metric=true&apikey=IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX `,
-		`http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${locationObj.Key}?metric=true&apikey=IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX `,
+		`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationObj.Key}?metric=true&apikey=IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX `,
+		`https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${locationObj.Key}?metric=true&apikey=IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX `,
 	];
 
 	const [dailyForecast, setDailyForecast] = useState();

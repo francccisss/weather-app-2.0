@@ -11,7 +11,7 @@ export const Current = ({ children }) => {
 		try {
 			console.log(locationObj.Key);
 			const getWeather = await fetch(
-				`http://dataservice.accuweather.com/currentconditions/v1/${locationObj.Key}?apikey=IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX&details=true`
+				`https://dataservice.accuweather.com/currentconditions/v1/${locationObj.Key}?apikey=IlRAHY0huRuA8lDzfLPGFOWT9u6rybSX&details=true`
 			);
 			const weatherData = await getWeather.json();
 			return weatherData[0];
