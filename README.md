@@ -1,5 +1,5 @@
 # Weather-App-2.0
-Using Reactjs and Tailwind for this new version of my old weather app that used vanilla JavaScript and no CSS Frameworks,
+Using Reactjs and Tailwind for this new version of my old weather app that used vanilla JavaScript and zero CSS Frameworks,
 for fetching data from the api, I plan on using react-query instead of the fetch API
 
 ## Visit:
