@@ -6,17 +6,15 @@ for fetching data from the api, I plan on using react-query instead of the fetch
 https://my-weather-hyys.onrender.com
 
 ## LIBRARIES USED:
-ChartJs: https://chartjs.org
-
 LeafletJS: https://leafletjs.com/
-
+<br>ChartJs: https://chartjs.org</br>
 
 ## API USED:
 Accuweather API doc: https://developer.accuweather.com/apis
 
-Old Version's repository: https://github.com/Sty6x/weather-app
-
-Visit the Old Version here: https://sty6x.github.io/weather-app/
+### Old Version
+Old Version's repository: https://github.com/Sty6x/weather-app 
+<br>Visit the Old Version here: https://sty6x.github.io/weather-app/</br>
 
 ## Screenshots:
 Homepage:
